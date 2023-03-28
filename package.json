@@ -67,13 +67,18 @@
     "aws-cdk",
     "budgets",
     "cdk",
-    "notification"
+    "notification",
+    "slack",
+    "sns"
   ],
   "engines": {
     "node": ">= 16.0.0"
   },
   "main": "lib/index.js",
   "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "0.0.0",
   "jest": {
     "testMatch": [
