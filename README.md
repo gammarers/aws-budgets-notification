@@ -1,9 +1,10 @@
 # AWS Budgets Notification
 
 [![source](https://img.shields.io/badge/source-github-blue?logo=github)](https://github.com/yicr/aws-budgets-notification)
-[![npm release](https://img.shields.io/npm/v/@yicr/aws-budgets-notification?label=npm)](https://www.npmjs.com/package/@yicr/aws-budgets-notification)
-![cdk peer dependency version](https://img.shields.io/npm/dependency-version/@yicr/aws-budgets-notification/peer/aws-cdk-lib?label=cdk)
-![npm downloads](https://img.shields.io/npm/dt/@yicr/aws-budgets-notification)
+[![npm release](https://img.shields.io/npm/v/@gammarer/aws-budgets-notification?label=npm)](https://www.npmjs.com/package/@gammarer/aws-budgets-notification)
+[![PyPI version](https://img.shields.io/pypi/v/gammarer.aws-budgets-notification)](https://pypi.org/project/gammarer.aws-budgets-notification/)
+![cdk peer dependency version](https://img.shields.io/npm/dependency-version/@gammarer/aws-budgets-notification/peer/aws-cdk-lib?label=cdk)
+![npm downloads](https://img.shields.io/npm/dt/@gammarer/aws-budgets-notification)
 
 A construct library for creating AWS Budgets Notification to Slack with the AWS CDK.
 
@@ -21,21 +22,25 @@ This construct creating resource list.
 ### TypeScript
 
 ```shell
-npm install @yicr/aws-budgets-notification
+npm install @gammarer/aws-budgets-notification
+# or
+yarn add @gammarer/aws-budgets-notification
 ```
-or
+
+### Python
+
 ```shell
-yarn add @yicr/aws-budgets-notification
+pip install gammarer.aws-budgets-notification
 ```
 
 ## Example
 
 ```shell
-npm install @yicr/aws-budgets-notification
+npm install @gammarer/aws-budgets-notification
 ```
 
 ```typescript
-import { BudgetsNotification } from '@yicr/aws-budgets-notification';
+import { BudgetsNotification } from '@gammarer/aws-budgets-notification';
 
 new BudgetsNotification(stack, 'BudgetsNotification', {
   slackWorkspaceId: 'T0XXXX111', // already AWS account linked your Slack.
