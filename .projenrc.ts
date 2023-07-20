@@ -23,5 +23,9 @@ const project = new awscdk.AwsCdkConstructLibrary({
     secret: 'GITHUB_TOKEN',
     allowedUsernames: ['yicr'],
   },
+  publishToPypi: {
+    distName: 'gammarer.aws-budgets-notification',
+    module: 'gammarer.aws_budgets_notification',
+  },
 });
 project.synth();
