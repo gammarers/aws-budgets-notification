@@ -1,5 +1,5 @@
 {
-  "name": "@yicr/aws-budgets-notification",
+  "name": "@gammarer/aws-budgets-notification",
   "description": "AWS Budgets Notification",
   "repository": {
     "type": "git",

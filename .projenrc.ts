@@ -4,7 +4,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   authorAddress: 'yicr@users.noreply.github.com',
   cdkVersion: '2.42.0',
   defaultReleaseBranch: 'main',
-  name: '@yicr/aws-budgets-notification',
+  name: '@gammarer/aws-budgets-notification',
   description: 'AWS Budgets Notification',
   keywords: ['aws', 'cdk', 'aws-cdk', 'budgets', 'notification', 'slack', 'sns'],
   projenrcTs: true,
