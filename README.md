@@ -1,7 +1,8 @@
 # AWS Budgets Notification
 
 [![source](https://img.shields.io/badge/source-github-blue?logo=github)](https://github.com/yicr/aws-budgets-notification)
-[![npm release](https://img.shields.io/npm/v/@yicr/aws-budgets-notification?label=npm)](https://www.npmjs.com/package/@gammarer/aws-budgets-notification)
+[![npm release](https://img.shields.io/npm/v/@gammarer/aws-budgets-notification?label=npm)](https://www.npmjs.com/package/@gammarer/aws-budgets-notification)
+[![PyPI version](https://img.shields.io/pypi/v/gammarer.aws-budgets-notification)](https://pypi.org/project/gammarer.aws-budgets-notification/)
 ![cdk peer dependency version](https://img.shields.io/npm/dependency-version/@gammarer/aws-budgets-notification/peer/aws-cdk-lib?label=cdk)
 ![npm downloads](https://img.shields.io/npm/dt/@gammarer/aws-budgets-notification)
 
@@ -22,10 +23,14 @@ This construct creating resource list.
 
 ```shell
 npm install @gammarer/aws-budgets-notification
-```
-or
-```shell
+# or
 yarn add @gammarer/aws-budgets-notification
+```
+
+### Python
+
+```shell
+pip install gammarer.aws-budgets-notification
 ```
 
 ## Example
