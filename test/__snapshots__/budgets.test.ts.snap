@@ -1,74 +1,74 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BudgetsNotification Testing BudgetsNotification LinkedAccounts Testing Should match snapshot: budgets-linked-accounts 1`] = `
-Object {
-  "Parameters": Object {
-    "BootstrapVersion": Object {
+{
+  "Parameters": {
+    "BootstrapVersion": {
       "Default": "/cdk-bootstrap/hnb659fds/version",
       "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
       "Type": "AWS::SSM::Parameter::Value<String>",
     },
   },
-  "Resources": Object {
-    "BudgetsNotificationBudget11111111111188E95F35": Object {
-      "Properties": Object {
-        "Budget": Object {
-          "BudgetLimit": Object {
+  "Resources": {
+    "BudgetsNotificationBudget11111111111188E95F35": {
+      "Properties": {
+        "Budget": {
+          "BudgetLimit": {
             "Amount": 50,
             "Unit": "USD",
           },
           "BudgetName": "Monthly usage for 111111111111.",
           "BudgetType": "COST",
-          "CostFilters": Object {
-            "LinkedAccount": Array [
+          "CostFilters": {
+            "LinkedAccount": [
               "111111111111",
             ],
           },
           "TimeUnit": "MONTHLY",
         },
-        "NotificationsWithSubscribers": Array [
-          Object {
-            "Notification": Object {
+        "NotificationsWithSubscribers": [
+          {
+            "Notification": {
               "ComparisonOperator": "GREATER_THAN",
               "NotificationType": "ACTUAL",
               "Threshold": 60,
               "ThresholdType": "PERCENTAGE",
             },
-            "Subscribers": Array [
-              Object {
-                "Address": Object {
+            "Subscribers": [
+              {
+                "Address": {
                   "Ref": "BudgetsNotificationNotificationTopicDFB74E64",
                 },
                 "SubscriptionType": "SNS",
               },
             ],
           },
-          Object {
-            "Notification": Object {
+          {
+            "Notification": {
               "ComparisonOperator": "GREATER_THAN",
               "NotificationType": "ACTUAL",
               "Threshold": 80,
               "ThresholdType": "PERCENTAGE",
             },
-            "Subscribers": Array [
-              Object {
-                "Address": Object {
+            "Subscribers": [
+              {
+                "Address": {
                   "Ref": "BudgetsNotificationNotificationTopicDFB74E64",
                 },
                 "SubscriptionType": "SNS",
               },
             ],
           },
-          Object {
-            "Notification": Object {
+          {
+            "Notification": {
               "ComparisonOperator": "GREATER_THAN",
               "NotificationType": "ACTUAL",
               "Threshold": 100,
               "ThresholdType": "PERCENTAGE",
             },
-            "Subscribers": Array [
-              Object {
-                "Address": Object {
+            "Subscribers": [
+              {
+                "Address": {
                   "Ref": "BudgetsNotificationNotificationTopicDFB74E64",
                 },
                 "SubscriptionType": "SNS",
@@ -79,65 +79,65 @@ Object {
       },
       "Type": "AWS::Budgets::Budget",
     },
-    "BudgetsNotificationBudget22222222222281269B64": Object {
-      "Properties": Object {
-        "Budget": Object {
-          "BudgetLimit": Object {
+    "BudgetsNotificationBudget22222222222281269B64": {
+      "Properties": {
+        "Budget": {
+          "BudgetLimit": {
             "Amount": 50,
             "Unit": "USD",
           },
           "BudgetName": "Monthly usage for 222222222222.",
           "BudgetType": "COST",
-          "CostFilters": Object {
-            "LinkedAccount": Array [
+          "CostFilters": {
+            "LinkedAccount": [
               "222222222222",
             ],
           },
           "TimeUnit": "MONTHLY",
         },
-        "NotificationsWithSubscribers": Array [
-          Object {
-            "Notification": Object {
+        "NotificationsWithSubscribers": [
+          {
+            "Notification": {
               "ComparisonOperator": "GREATER_THAN",
               "NotificationType": "ACTUAL",
               "Threshold": 60,
               "ThresholdType": "PERCENTAGE",
             },
-            "Subscribers": Array [
-              Object {
-                "Address": Object {
+            "Subscribers": [
+              {
+                "Address": {
                   "Ref": "BudgetsNotificationNotificationTopicDFB74E64",
                 },
                 "SubscriptionType": "SNS",
               },
             ],
           },
-          Object {
-            "Notification": Object {
+          {
+            "Notification": {
               "ComparisonOperator": "GREATER_THAN",
               "NotificationType": "ACTUAL",
               "Threshold": 80,
               "ThresholdType": "PERCENTAGE",
             },
-            "Subscribers": Array [
-              Object {
-                "Address": Object {
+            "Subscribers": [
+              {
+                "Address": {
                   "Ref": "BudgetsNotificationNotificationTopicDFB74E64",
                 },
                 "SubscriptionType": "SNS",
               },
             ],
           },
-          Object {
-            "Notification": Object {
+          {
+            "Notification": {
               "ComparisonOperator": "GREATER_THAN",
               "NotificationType": "ACTUAL",
               "Threshold": 100,
               "ThresholdType": "PERCENTAGE",
             },
-            "Subscribers": Array [
-              Object {
-                "Address": Object {
+            "Subscribers": [
+              {
+                "Address": {
                   "Ref": "BudgetsNotificationNotificationTopicDFB74E64",
                 },
                 "SubscriptionType": "SNS",
@@ -148,30 +148,30 @@ Object {
       },
       "Type": "AWS::Budgets::Budget",
     },
-    "BudgetsNotificationNotificationTopicDFB74E64": Object {
-      "Properties": Object {
+    "BudgetsNotificationNotificationTopicDFB74E64": {
+      "Properties": {
         "DisplayName": "budget-notification-586e7973-topic",
         "TopicName": "budget-notification-586e7973-topic",
       },
       "Type": "AWS::SNS::Topic",
     },
-    "BudgetsNotificationNotificationTopicPolicyD5C1A9D0": Object {
-      "Properties": Object {
-        "PolicyDocument": Object {
-          "Statement": Array [
-            Object {
+    "BudgetsNotificationNotificationTopicPolicyD5C1A9D0": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
               "Action": "sns:Publish",
               "Effect": "Allow",
-              "Principal": Object {
+              "Principal": {
                 "Service": "budgets.amazonaws.com",
               },
-              "Resource": Object {
+              "Resource": {
                 "Ref": "BudgetsNotificationNotificationTopicDFB74E64",
               },
               "Sid": "AWSBudgetsSNSPublishingPermissions",
             },
-            Object {
-              "Action": Array [
+            {
+              "Action": [
                 "sns:GetTopicAttributes",
                 "sns:SetTopicAttributes",
                 "sns:AddPermission",
@@ -182,16 +182,16 @@ Object {
                 "sns:Publish",
                 "sns:Receive",
               ],
-              "Condition": Object {
-                "StringEquals": Object {
+              "Condition": {
+                "StringEquals": {
                   "AWS:SourceOwner": "123456789012",
                 },
               },
               "Effect": "Allow",
-              "Principal": Object {
+              "Principal": {
                 "AWS": "*",
               },
-              "Resource": Object {
+              "Resource": {
                 "Ref": "BudgetsNotificationNotificationTopicDFB74E64",
               },
               "Sid": "OwnerSNSActionPermissions",
@@ -199,19 +199,19 @@ Object {
           ],
           "Version": "2012-10-17",
         },
-        "Topics": Array [
-          Object {
+        "Topics": [
+          {
             "Ref": "BudgetsNotificationNotificationTopicDFB74E64",
           },
         ],
       },
       "Type": "AWS::SNS::TopicPolicy",
     },
-    "BudgetsNotificationSlackChannelConfigBE947213": Object {
-      "Properties": Object {
+    "BudgetsNotificationSlackChannelConfigBE947213": {
+      "Properties": {
         "ConfigurationName": "slack-channel-budget-notification-586e7973-config",
-        "IamRoleArn": Object {
-          "Fn::GetAtt": Array [
+        "IamRoleArn": {
+          "Fn::GetAtt": [
             "BudgetsNotificationSlackChannelConfigRole34A2F398",
             "Arn",
           ],
@@ -219,22 +219,22 @@ Object {
         "LoggingLevel": "ERROR",
         "SlackChannelId": "XXXXXXXX",
         "SlackWorkspaceId": "T0XXXX111",
-        "SnsTopicArns": Array [
-          Object {
+        "SnsTopicArns": [
+          {
             "Ref": "BudgetsNotificationNotificationTopicDFB74E64",
           },
         ],
       },
       "Type": "AWS::Chatbot::SlackChannelConfiguration",
     },
-    "BudgetsNotificationSlackChannelConfigRole34A2F398": Object {
-      "Properties": Object {
-        "AssumeRolePolicyDocument": Object {
-          "Statement": Array [
-            Object {
+    "BudgetsNotificationSlackChannelConfigRole34A2F398": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
               "Action": "sts:AssumeRole",
               "Effect": "Allow",
-              "Principal": Object {
+              "Principal": {
                 "Service": "chatbot.amazonaws.com",
               },
             },
@@ -242,12 +242,12 @@ Object {
           "Version": "2012-10-17",
         },
         "Description": "slack channel budget notification config role.",
-        "Policies": Array [
-          Object {
-            "PolicyDocument": Object {
-              "Statement": Array [
-                Object {
-                  "Action": Array [
+        "Policies": [
+          {
+            "PolicyDocument": {
+              "Statement": [
+                {
+                  "Action": [
                     "cloudwatch:Describe*",
                     "cloudwatch:Get*",
                     "cloudwatch:List*",
@@ -266,22 +266,22 @@ Object {
       "Type": "AWS::IAM::Role",
     },
   },
-  "Rules": Object {
-    "CheckBootstrapVersion": Object {
-      "Assertions": Array [
-        Object {
-          "Assert": Object {
-            "Fn::Not": Array [
-              Object {
-                "Fn::Contains": Array [
-                  Array [
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
                     "1",
                     "2",
                     "3",
                     "4",
                     "5",
                   ],
-                  Object {
+                  {
                     "Ref": "BootstrapVersion",
                   },
                 ],
@@ -297,19 +297,19 @@ Object {
 `;
 
 exports[`BudgetsNotification Testing BudgetsNotification Normal Testing Should match snapshot: budgets-normal 1`] = `
-Object {
-  "Parameters": Object {
-    "BootstrapVersion": Object {
+{
+  "Parameters": {
+    "BootstrapVersion": {
       "Default": "/cdk-bootstrap/hnb659fds/version",
       "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
       "Type": "AWS::SSM::Parameter::Value<String>",
     },
   },
-  "Resources": Object {
-    "BudgetsNotificationBudgetB79C7685": Object {
-      "Properties": Object {
-        "Budget": Object {
-          "BudgetLimit": Object {
+  "Resources": {
+    "BudgetsNotificationBudgetB79C7685": {
+      "Properties": {
+        "Budget": {
+          "BudgetLimit": {
             "Amount": 50,
             "Unit": "USD",
           },
@@ -317,49 +317,49 @@ Object {
           "BudgetType": "COST",
           "TimeUnit": "MONTHLY",
         },
-        "NotificationsWithSubscribers": Array [
-          Object {
-            "Notification": Object {
+        "NotificationsWithSubscribers": [
+          {
+            "Notification": {
               "ComparisonOperator": "GREATER_THAN",
               "NotificationType": "ACTUAL",
               "Threshold": 60,
               "ThresholdType": "PERCENTAGE",
             },
-            "Subscribers": Array [
-              Object {
-                "Address": Object {
+            "Subscribers": [
+              {
+                "Address": {
                   "Ref": "BudgetsNotificationNotificationTopicDFB74E64",
                 },
                 "SubscriptionType": "SNS",
               },
             ],
           },
-          Object {
-            "Notification": Object {
+          {
+            "Notification": {
               "ComparisonOperator": "GREATER_THAN",
               "NotificationType": "ACTUAL",
               "Threshold": 80,
               "ThresholdType": "PERCENTAGE",
             },
-            "Subscribers": Array [
-              Object {
-                "Address": Object {
+            "Subscribers": [
+              {
+                "Address": {
                   "Ref": "BudgetsNotificationNotificationTopicDFB74E64",
                 },
                 "SubscriptionType": "SNS",
               },
             ],
           },
-          Object {
-            "Notification": Object {
+          {
+            "Notification": {
               "ComparisonOperator": "GREATER_THAN",
               "NotificationType": "ACTUAL",
               "Threshold": 100,
               "ThresholdType": "PERCENTAGE",
             },
-            "Subscribers": Array [
-              Object {
-                "Address": Object {
+            "Subscribers": [
+              {
+                "Address": {
                   "Ref": "BudgetsNotificationNotificationTopicDFB74E64",
                 },
                 "SubscriptionType": "SNS",
@@ -370,30 +370,30 @@ Object {
       },
       "Type": "AWS::Budgets::Budget",
     },
-    "BudgetsNotificationNotificationTopicDFB74E64": Object {
-      "Properties": Object {
+    "BudgetsNotificationNotificationTopicDFB74E64": {
+      "Properties": {
         "DisplayName": "budget-notification-586e7973-topic",
         "TopicName": "budget-notification-586e7973-topic",
       },
       "Type": "AWS::SNS::Topic",
     },
-    "BudgetsNotificationNotificationTopicPolicyD5C1A9D0": Object {
-      "Properties": Object {
-        "PolicyDocument": Object {
-          "Statement": Array [
-            Object {
+    "BudgetsNotificationNotificationTopicPolicyD5C1A9D0": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
               "Action": "sns:Publish",
               "Effect": "Allow",
-              "Principal": Object {
+              "Principal": {
                 "Service": "budgets.amazonaws.com",
               },
-              "Resource": Object {
+              "Resource": {
                 "Ref": "BudgetsNotificationNotificationTopicDFB74E64",
               },
               "Sid": "AWSBudgetsSNSPublishingPermissions",
             },
-            Object {
-              "Action": Array [
+            {
+              "Action": [
                 "sns:GetTopicAttributes",
                 "sns:SetTopicAttributes",
                 "sns:AddPermission",
@@ -404,16 +404,16 @@ Object {
                 "sns:Publish",
                 "sns:Receive",
               ],
-              "Condition": Object {
-                "StringEquals": Object {
+              "Condition": {
+                "StringEquals": {
                   "AWS:SourceOwner": "123456789012",
                 },
               },
               "Effect": "Allow",
-              "Principal": Object {
+              "Principal": {
                 "AWS": "*",
               },
-              "Resource": Object {
+              "Resource": {
                 "Ref": "BudgetsNotificationNotificationTopicDFB74E64",
               },
               "Sid": "OwnerSNSActionPermissions",
@@ -421,19 +421,19 @@ Object {
           ],
           "Version": "2012-10-17",
         },
-        "Topics": Array [
-          Object {
+        "Topics": [
+          {
             "Ref": "BudgetsNotificationNotificationTopicDFB74E64",
           },
         ],
       },
       "Type": "AWS::SNS::TopicPolicy",
     },
-    "BudgetsNotificationSlackChannelConfigBE947213": Object {
-      "Properties": Object {
+    "BudgetsNotificationSlackChannelConfigBE947213": {
+      "Properties": {
         "ConfigurationName": "slack-channel-budget-notification-586e7973-config",
-        "IamRoleArn": Object {
-          "Fn::GetAtt": Array [
+        "IamRoleArn": {
+          "Fn::GetAtt": [
             "BudgetsNotificationSlackChannelConfigRole34A2F398",
             "Arn",
           ],
@@ -441,22 +441,22 @@ Object {
         "LoggingLevel": "ERROR",
         "SlackChannelId": "XXXXXXXX",
         "SlackWorkspaceId": "T0XXXX111",
-        "SnsTopicArns": Array [
-          Object {
+        "SnsTopicArns": [
+          {
             "Ref": "BudgetsNotificationNotificationTopicDFB74E64",
           },
         ],
       },
       "Type": "AWS::Chatbot::SlackChannelConfiguration",
     },
-    "BudgetsNotificationSlackChannelConfigRole34A2F398": Object {
-      "Properties": Object {
-        "AssumeRolePolicyDocument": Object {
-          "Statement": Array [
-            Object {
+    "BudgetsNotificationSlackChannelConfigRole34A2F398": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
               "Action": "sts:AssumeRole",
               "Effect": "Allow",
-              "Principal": Object {
+              "Principal": {
                 "Service": "chatbot.amazonaws.com",
               },
             },
@@ -464,12 +464,12 @@ Object {
           "Version": "2012-10-17",
         },
         "Description": "slack channel budget notification config role.",
-        "Policies": Array [
-          Object {
-            "PolicyDocument": Object {
-              "Statement": Array [
-                Object {
-                  "Action": Array [
+        "Policies": [
+          {
+            "PolicyDocument": {
+              "Statement": [
+                {
+                  "Action": [
                     "cloudwatch:Describe*",
                     "cloudwatch:Get*",
                     "cloudwatch:List*",
@@ -488,22 +488,22 @@ Object {
       "Type": "AWS::IAM::Role",
     },
   },
-  "Rules": Object {
-    "CheckBootstrapVersion": Object {
-      "Assertions": Array [
-        Object {
-          "Assert": Object {
-            "Fn::Not": Array [
-              Object {
-                "Fn::Contains": Array [
-                  Array [
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
                     "1",
                     "2",
                     "3",
                     "4",
                     "5",
                   ],
-                  Object {
+                  {
                     "Ref": "BootstrapVersion",
                   },
                 ],

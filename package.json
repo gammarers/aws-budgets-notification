@@ -17,6 +17,7 @@
     "eslint": "npx projen eslint",
     "package": "npx projen package",
     "package-all": "npx projen package-all",
+    "package:java": "npx projen package:java",
     "package:js": "npx projen package:js",
     "package:python": "npx projen package:python",
     "post-compile": "npx projen post-compile",
@@ -36,8 +37,8 @@
     "organization": false
   },
   "devDependencies": {
-    "@types/jest": "^27",
-    "@types/node": "^16",
+    "@types/jest": "^29.0.0",
+    "@types/node": "^18",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
     "aws-cdk-lib": "2.42.0",
@@ -46,27 +47,23 @@
     "eslint-import-resolver-node": "^0.3.9",
     "eslint-import-resolver-typescript": "^3.6.0",
     "eslint-plugin-import": "^2.28.0",
-    "jest": "^27",
+    "jest": "^29.0.0",
     "jest-junit": "^15",
-    "jsii": "1.x",
+    "jsii": "5.1.x",
     "jsii-diff": "^1.87.0",
     "jsii-docgen": "^7.2.9",
     "jsii-pacmak": "^1.87.0",
-    "jsii-rosetta": "1.x",
+    "jsii-rosetta": "5.1.x",
     "npm-check-updates": "^16",
     "projen": "^0.72.12",
     "standard-version": "^9",
-    "ts-jest": "^27",
+    "ts-jest": "^29.0.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.1.6"
+    "typescript": "5.1.x"
   },
   "peerDependencies": {
     "aws-cdk-lib": "^2.42.0",
     "constructs": "^10.0.5"
-  },
-  "resolutions": {
-    "@types/babel__traverse": "7.18.2",
-    "@types/prettier": "2.6.0"
   },
   "keywords": [
     "aws",
@@ -78,7 +75,7 @@
     "sns"
   ],
   "engines": {
-    "node": ">= 16.0.0"
+    "node": ">= 18.0.0"
   },
   "main": "lib/index.js",
   "license": "Apache-2.0",
@@ -131,6 +128,13 @@
   "jsii": {
     "outdir": "dist",
     "targets": {
+      "java": {
+        "package": "com.gammarer.cdk.aws.budgets_notification",
+        "maven": {
+          "groupId": "com.gammarer",
+          "artifactId": "aws-budgets-notification"
+        }
+      },
       "python": {
         "distName": "gammarer.aws-budgets-notification",
         "module": "gammarer.aws_budgets_notification"
