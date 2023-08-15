@@ -1,10 +1,12 @@
-# AWS Budgets Notification
+[![GitHub](https://img.shields.io/github/license/yicr/aws-budgets-notification?style=flat-square)](https://github.com/yicr/aws-budgets-notification/blob/main/LICENSE)
+[![npm (scoped)](https://img.shields.io/npm/v/@gammarer/aws-budgets-notification?style=flat-square)](https://www.npmjs.com/package/@gammarer/aws-budgets-notification)
+[![PyPI](https://img.shields.io/pypi/v/gammarer.aws-budgets-notification?style=flat-square)](https://pypi.org/project/gammarer.aws-budgets-notification/)
+<!-- [![Nuget](https://img.shields.io/nuget/v/Gammarer.CDK.AWS.SecureFrontendWebAppCloudFrontDistribution?style=flat-square)](https://www.nuget.org/packages/Gammarer.CDK.AWS.SecureFrontendWebAppCloudFrontDistribution/)  -->
+[![Sonatype Nexus (Releases)](https://img.shields.io/nexus/r/com.gammarer/aws-budgets-notification?server=https%3A%2F%2Fs01.oss.sonatype.org%2F&style=flat-square)](https://s01.oss.sonatype.org/content/repositories/releases/com/gammarer/aws-budgets-notification/)
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/yicr/aws-budgets-notification/release.yml?branch=main&label=release&style=flat-square)](https://github.com/yicr/aws-budgets-notification/actions/workflows/release.yml)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/yicr/aws-budgets-notification?sort=semver&style=flat-square)](https://github.com/yicr/aws-budgets-notification/releases)
 
-[![source](https://img.shields.io/badge/source-github-blue?logo=github)](https://github.com/yicr/aws-budgets-notification)
-[![npm release](https://img.shields.io/npm/v/@gammarer/aws-budgets-notification?label=npm)](https://www.npmjs.com/package/@gammarer/aws-budgets-notification)
-[![PyPI version](https://img.shields.io/pypi/v/gammarer.aws-budgets-notification)](https://pypi.org/project/gammarer.aws-budgets-notification/)
-![cdk peer dependency version](https://img.shields.io/npm/dependency-version/@gammarer/aws-budgets-notification/peer/aws-cdk-lib?label=cdk)
-![npm downloads](https://img.shields.io/npm/dt/@gammarer/aws-budgets-notification)
+# AWS Budgets Notification
 
 A construct library for creating AWS Budgets Notification to Slack with the AWS CDK.
 
