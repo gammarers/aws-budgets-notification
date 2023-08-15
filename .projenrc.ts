@@ -11,8 +11,8 @@ const project = new awscdk.AwsCdkConstructLibrary({
   repositoryUrl: 'https://github.com/yicr/aws-budgets-notification.git',
   releaseToNpm: true,
   npmAccess: javascript.NpmAccess.PUBLIC,
-  minNodeVersion: '16.0.0',
-  workflowNodeVersion: '16.19.1',
+  minNodeVersion: '18.0.0',
+  workflowNodeVersion: '18.17.1',
   depsUpgradeOptions: {
     workflowOptions: {
       labels: ['auto-approve', 'auto-merge'],
