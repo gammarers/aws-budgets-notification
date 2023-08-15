@@ -35,11 +35,19 @@ yarn add @gammarer/aws-budgets-notification
 pip install gammarer.aws-budgets-notification
 ```
 
+### Java
+
+Add the following to pom.xml:
+
+```xml
+<dependency>
+  <groupId>com.gammarer</groupId>
+  <artifactId>aws-budgets-notification</artifactId>
+</dependency>
+```
+
 ## Example
 
-```shell
-npm install @gammarer/aws-budgets-notification
-```
 
 ```typescript
 import { BudgetsNotification } from '@gammarer/aws-budgets-notification';
