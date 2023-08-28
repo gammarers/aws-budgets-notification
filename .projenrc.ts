@@ -2,9 +2,9 @@ import { awscdk, javascript } from 'projen';
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'yicr',
   authorAddress: 'yicr@users.noreply.github.com',
-  cdkVersion: '2.42.0',
-  typescriptVersion: '5.1.x',
-  jsiiVersion: '5.1.x',
+  cdkVersion: '2.80.0',
+  typescriptVersion: '4.9.x',
+  jsiiVersion: '~5.0.0',
   defaultReleaseBranch: 'main',
   name: '@gammarer/aws-budgets-notification',
   description: 'AWS Budgets Notification',
@@ -13,21 +13,12 @@ const project = new awscdk.AwsCdkConstructLibrary({
   repositoryUrl: 'https://github.com/yicr/aws-budgets-notification.git',
   releaseToNpm: true,
   npmAccess: javascript.NpmAccess.PUBLIC,
-  // devDeps: [
-  //   'jsii-rosetta@5.0.x',
-  // ],
-  // jestOptions: {
-  //   jestVersion: '^29.0.0',
-  //   jestConfig: {
-  //     transform: { '^.+\\.tsx?$': new javascript.Transform('ts-jest') },
-  //   },
-  // },
   minNodeVersion: '18.0.0',
   workflowNodeVersion: '18.17.1',
   depsUpgradeOptions: {
     workflowOptions: {
       labels: ['auto-approve', 'auto-merge'],
-      schedule: javascript.UpgradeDependenciesSchedule.expressions(['0 19 * * *']),
+      schedule: javascript.UpgradeDependenciesSchedule.expressions(['0 19 * * 3']), // every wednesday 19:00 (JST/THU:0400)
     },
   },
   autoApproveOptions: {
