@@ -11,7 +11,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   description: 'AWS Budgets Notification',
   keywords: ['aws', 'cdk', 'aws-cdk', 'budgets', 'notification', 'slack', 'sns'],
   projenrcTs: true,
-  repositoryUrl: 'https://github.com/yicr/aws-budgets-notification.git',
+  repositoryUrl: 'https://github.com/gammarer/aws-budgets-notification.git',
   releaseToNpm: true,
   npmAccess: javascript.NpmAccess.PUBLIC,
   majorVersion: 1,
