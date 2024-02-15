@@ -1,3 +1,5 @@
+# AWS Budgets Notification
+
 [![GitHub](https://img.shields.io/github/license/yicr/aws-budgets-notification?style=flat-square)](https://github.com/yicr/aws-budgets-notification/blob/main/LICENSE)
 [![npm (scoped)](https://img.shields.io/npm/v/@gammarer/aws-budgets-notification?style=flat-square)](https://www.npmjs.com/package/@gammarer/aws-budgets-notification)
 [![PyPI](https://img.shields.io/pypi/v/gammarer.aws-budgets-notification?style=flat-square)](https://pypi.org/project/gammarer.aws-budgets-notification/)
@@ -6,10 +8,7 @@
 [![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/yicr/aws-budgets-notification/release.yml?branch=main&label=release&style=flat-square)](https://github.com/yicr/aws-budgets-notification/actions/workflows/release.yml)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/yicr/aws-budgets-notification?sort=semver&style=flat-square)](https://github.com/yicr/aws-budgets-notification/releases)
 
-# AWS Budgets Notification
-
 A construct library for creating AWS Budgets Notification to Slack with the AWS CDK.
-
 
 ## Resources
 
