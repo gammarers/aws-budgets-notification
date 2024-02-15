@@ -8,6 +8,8 @@
 [![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/yicr/aws-budgets-notification/release.yml?branch=main&label=release&style=flat-square)](https://github.com/yicr/aws-budgets-notification/actions/workflows/release.yml)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/yicr/aws-budgets-notification?sort=semver&style=flat-square)](https://github.com/yicr/aws-budgets-notification/releases)
 
+[![View on Construct Hub](https://constructs.dev/badge?package=@gammarer/aws-budgets-notification)](https://constructs.dev/packages/@gammarer/aws-budgets-notification)
+
 A construct library for creating AWS Budgets Notification to Slack with the AWS CDK.
 
 ## Resources
