@@ -31,12 +31,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
     distName: 'gammarer.aws-budgets-notification',
     module: 'gammarer.aws_budgets_notification',
   },
-  publishToMaven: {
-    mavenGroupId: 'com.gammarer',
-    javaPackage: 'com.gammarer.cdk.aws.budgets_notification',
-    mavenArtifactId: 'aws-budgets-notification',
-    mavenEndpoint: 'https://s01.oss.sonatype.org',
-  },
   publishToNuget: {
     dotNetNamespace: 'Gammarer.CDK.AWS',
     packageId: 'Gammarer.CDK.AWS.BudgetNotification',
