@@ -28,12 +28,12 @@ const project = new awscdk.AwsCdkConstructLibrary({
     allowedUsernames: ['yicr'],
   },
   publishToPypi: {
-    distName: 'gammarer.aws-budgets-notification',
-    module: 'gammarer.aws_budgets_notification',
+    distName: 'gammarers.aws-budgets-notification',
+    module: 'gammarers.aws_budgets_notification',
   },
   publishToNuget: {
-    dotNetNamespace: 'Gammarer.CDK.AWS',
-    packageId: 'Gammarer.CDK.AWS.BudgetNotification',
+    dotNetNamespace: 'Gammarers.CDK.AWS',
+    packageId: 'Gammarers.CDK.AWS.BudgetNotification',
   },
 });
 project.synth();

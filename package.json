@@ -132,12 +132,12 @@
     "outdir": "dist",
     "targets": {
       "python": {
-        "distName": "gammarer.aws-budgets-notification",
-        "module": "gammarer.aws_budgets_notification"
+        "distName": "gammarers.aws-budgets-notification",
+        "module": "gammarers.aws_budgets_notification"
       },
       "dotnet": {
-        "namespace": "Gammarer.CDK.AWS",
-        "packageId": "Gammarer.CDK.AWS.BudgetNotification"
+        "namespace": "Gammarers.CDK.AWS",
+        "packageId": "Gammarers.CDK.AWS.BudgetNotification"
       }
     },
     "tsc": {
