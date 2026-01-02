@@ -13,7 +13,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   repositoryUrl: 'https://github.com/gammarers/aws-budgets-notification-stack.git',
   releaseToNpm: true,
   npmAccess: javascript.NpmAccess.PUBLIC,
-  majorVersion: 1,
+  majorVersion: 2,
   minNodeVersion: '18.0.0',
   workflowNodeVersion: '22.4.x',
   depsUpgradeOptions: {
