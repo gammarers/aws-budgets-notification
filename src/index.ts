@@ -1,114 +1,36 @@
-import * as crypto from 'crypto';
-import * as cdk from 'aws-cdk-lib';
+import { Stack, StackProps } from 'aws-cdk-lib';
 import * as budgets from 'aws-cdk-lib/aws-budgets';
-import * as bot from 'aws-cdk-lib/aws-chatbot';
+import * as events from 'aws-cdk-lib/aws-events';
+import * as targets from 'aws-cdk-lib/aws-events-targets';
 import * as iam from 'aws-cdk-lib/aws-iam';
-//import * as logs from 'aws-cdk-lib/aws-logs';
 import * as sns from 'aws-cdk-lib/aws-sns';
+import * as sfn from 'aws-cdk-lib/aws-stepfunctions';
 import { Construct } from 'constructs';
 
-
-export interface BudgetsNotificationProps {
-  readonly slackWorkspaceId: string;
-  readonly slackChannelId: string;
-  readonly budgetLimitAmount: number;
-  readonly linkedAccounts?: string[];
+export interface BudgetsNotificationStackProps extends StackProps {
+  // readonly slackWorkspaceId: string;
+  // readonly slackChannelId: string;
+  readonly amount: number;
+  // readonly linkedAccounts?: string[];
 }
 
-export class BudgetsNotification extends Construct {
+export class BudgetsNotificationStack extends Stack {
 
-  constructor(scope: Construct, id: string, props: BudgetsNotificationProps) {
+  constructor(scope: Construct, id: string, props: BudgetsNotificationStackProps) {
     super(scope, id);
 
-    // 👇Get current account & region
-    const account = cdk.Stack.of(this).account;
-    // const region = cdk.Stack.of(this).region;
+    // 👇 Get current account & region
+    // const account = Stack.of(this).account;
+    // const region = Stack.of(this).region;
 
-    // 👇Create random key
-    const randomNameKey = crypto.createHash('shake256', { outputLength: 4 })
-      .update(`${cdk.Names.uniqueId(scope)}-${cdk.Names.uniqueId(this)}`)
-      .digest('hex');
-
-    // 👇Create SNS Topic
-    const topic = new sns.Topic(this, 'NotificationTopic', {
-      topicName: `budget-notification-${randomNameKey}-topic`,
-      displayName: `budget-notification-${randomNameKey}-topic`,
-    });
-    topic.addToResourcePolicy(new iam.PolicyStatement({
-      sid: 'AWSBudgetsSNSPublishingPermissions',
-      effect: iam.Effect.ALLOW,
-      principals: [
-        new iam.ServicePrincipal('budgets.amazonaws.com'),
-      ],
-      actions: [
-        'sns:Publish',
-      ],
-      resources: [
-        topic.topicArn,
-      ],
-    }));
-    topic.addToResourcePolicy(new iam.PolicyStatement({
-      sid: 'OwnerSNSActionPermissions',
-      effect: iam.Effect.ALLOW,
-      principals: [
-        new iam.AnyPrincipal(),
-      ],
-      actions: [
-        'sns:GetTopicAttributes',
-        'sns:SetTopicAttributes',
-        'sns:AddPermission',
-        'sns:RemovePermission',
-        'sns:DeleteTopic',
-        'sns:Subscribe',
-        'sns:ListSubscriptionsByTopic',
-        'sns:Publish',
-        'sns:Receive',
-      ],
-      resources: [
-        topic.topicArn,
-      ],
-      conditions: {
-        StringEquals: {
-          'AWS:SourceOwner': account,
-        },
-      },
-    }));
-
-    // 👇Create ChatBot
-    new bot.SlackChannelConfiguration(this, 'SlackChannelConfig', {
-      slackChannelConfigurationName: `slack-channel-budget-notification-${randomNameKey}-config`,
-      slackWorkspaceId: props.slackWorkspaceId,
-      slackChannelId: props.slackChannelId,
-      //logRetention: logs.RetentionDays.TWO_MONTHS,
-      //logRetentionRetryOptions: undefined,
-      //logRetentionRole: undefined,
-      loggingLevel: bot.LoggingLevel.ERROR,
-      notificationTopics: [
-        topic,
-      ],
-      role: new iam.Role(this, 'SlackChannelConfigRole', {
-        roleName: `slack-channel-budget-notification-${randomNameKey}-config-role`,
-        description: 'slack channel budget notification config role.',
-        assumedBy: new iam.ServicePrincipal('chatbot.amazonaws.com'),
-        inlinePolicies: {
-          'chatbot-policy': new iam.PolicyDocument({
-            statements: [
-              new iam.PolicyStatement({
-                effect: iam.Effect.ALLOW,
-                actions: [
-                  'cloudwatch:Describe*',
-                  'cloudwatch:Get*',
-                  'cloudwatch:List*',
-                ],
-                resources: ['*'],
-              }),
-            ],
-          }),
-        },
-      }),
+    // 👇 SNS Topic for budgets notifications(no subscriptions)
+    const sinkTopic = new sns.Topic(this, 'BudgetsSinkTopic', {
+      displayName: 'Budgets notification sink (no subscriptions)',
     });
 
-    // 👇Common notification with subscribers.
+    sinkTopic.grantPublish(new iam.ServicePrincipal('budgets.amazonaws.com'));
+
+    // 👇 Common notification with subscribers.
     const notificationsWithSubscribers: Array<budgets.CfnBudget.NotificationWithSubscribersProperty> = [
       {
         notification: {
@@ -120,7 +42,7 @@ export class BudgetsNotification extends Construct {
         subscribers: [
           {
             subscriptionType: 'SNS',
-            address: topic.topicArn,
+            address: sinkTopic.topicArn,
           },
         ],
       },
@@ -134,7 +56,7 @@ export class BudgetsNotification extends Construct {
         subscribers: [
           {
             subscriptionType: 'SNS',
-            address: topic.topicArn,
+            address: sinkTopic.topicArn,
           },
         ],
       },
@@ -148,45 +70,68 @@ export class BudgetsNotification extends Construct {
         subscribers: [
           {
             subscriptionType: 'SNS',
-            address: topic.topicArn,
+            address: sinkTopic.topicArn,
           },
         ],
       },
     ];
 
-    if (props.linkedAccounts && props.linkedAccounts.length >= 1) {
-      for (const linkedAccount of props.linkedAccounts) {
-        new budgets.CfnBudget(this, `Budget${linkedAccount}`, {
-          budget: {
-            budgetType: 'COST',
-            budgetName: `Monthly usage for ${linkedAccount}.`,
-            timeUnit: 'MONTHLY',
-            costFilters: {
-              LinkedAccount: [
-                linkedAccount,
-              ],
-            },
-            budgetLimit: {
-              amount: props.budgetLimitAmount,
-              unit: 'USD',
-            },
-          },
-          notificationsWithSubscribers,
-        });
-      }
-    } else {
-      new budgets.CfnBudget(this, 'Budget', {
-        budget: {
-          budgetType: 'COST',
-          budgetName: 'Monthly usage',
-          timeUnit: 'MONTHLY',
-          budgetLimit: {
-            amount: props.budgetLimitAmount,
-            unit: 'USD',
-          },
+    new budgets.CfnBudget(this, 'Budget', {
+      budget: {
+        budgetType: 'COST',
+        budgetName: 'Monthly usage',
+        timeUnit: 'MONTHLY',
+        budgetLimit: {
+          amount: props.amount,
+          unit: 'USD',
         },
-        notificationsWithSubscribers,
-      });
-    }
+      },
+      notificationsWithSubscribers,
+    });
+
+    // if (props.linkedAccounts && props.linkedAccounts.length >= 1) {
+    //   for (const linkedAccount of props.linkedAccounts) {
+    //     new budgets.CfnBudget(this, `Budget${linkedAccount}`, {
+    //       budget: {
+    //         budgetType: 'COST',
+    //         budgetName: `Monthly usage for ${linkedAccount}.`,
+    //         timeUnit: 'MONTHLY',
+    //         costFilters: {
+    //           LinkedAccount: [
+    //             linkedAccount,
+    //           ],
+    //         },
+    //         budgetLimit: {
+    //           amount: props.budgetLimitAmount,
+    //           unit: 'USD',
+    //         },
+    //       },
+    //       notificationsWithSubscribers,
+    //     });
+    //   }
+    // } else {}
+
+    const pass = new sfn.Pass(this, 'Pass');
+
+    const success = new sfn.Succeed(this, 'Success');
+
+    const machine = new sfn.StateMachine(this, 'BudgetAlertNotificationStateMachine', {
+      definition: pass.next(success),
+    });
+
+    new events.Rule(this, 'BudgetThresholdExceededRule', {
+      description: 'Trigger Step Functions when AWS Budgets threshold is exceeded',
+      eventPattern: {
+        source: ['aws.budgets'],
+        detailType: ['Budget Threshold Exceeded'],
+        // detail: { budgetName: ['my-budget'] },
+      },
+      targets: [
+        new targets.SfnStateMachine(machine, {
+          input: events.RuleTargetInput.fromEventPath('$'),
+          // executionName: events.EventField.fromPath('$.id'),
+        }),
+      ],
+    });
   }
 }
