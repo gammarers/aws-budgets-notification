@@ -1,65 +1,57 @@
-# AWS Budgets Notification
+# AWS Budgets Notification Stack
 
-[![GitHub](https://img.shields.io/github/license/gammarers/aws-budgets-notification?style=flat-square)](https://github.com/gammarers/aws-budgets-notification/blob/main/LICENSE)
-[![npm (scoped)](https://img.shields.io/npm/v/@gammarers/aws-budgets-notification?style=flat-square)](https://www.npmjs.com/package/@gammarers/aws-budgets-notification)
-[![PyPI](https://img.shields.io/pypi/v/gammarers.aws-budgets-notification?style=flat-square)](https://pypi.org/project/gammarers.aws-budgets-notification/)
-[![Nuget](https://img.shields.io/nuget/v/gammarers.CDK.AWS.BudgetNotification?style=flat-square)](https://www.nuget.org/packages/Gammarers.CDK.AWS.BudgetNotification/)
-[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/gammarers/aws-budgets-notification/release.yml?branch=main&label=release&style=flat-square)](https://github.com/gammarers/aws-budgets-notification/actions/workflows/release.yml)
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/gammarers/aws-budgets-notification?sort=semver&style=flat-square)](https://github.com/gammarers/aws-budgets-notification/releases)
+[![GitHub](https://img.shields.io/github/license/gammarers/aws-budgets-notification-stack?style=flat-square)](https://github.com/gammarers/aws-budgets-notification-stack/blob/main/LICENSE)
+<!-- [![npm (scoped)](https://img.shields.io/npm/v/@gammarers/aws-budgets-notification-stack?style=flat-square)](https://www.npmjs.com/package/@gammarers/aws-budgets-notification-stack)
+[![PyPI](https://img.shields.io/pypi/v/gammarers.aws-budgets-notification-stack?style=flat-square)](https://pypi.org/project/gammarers.aws-budgets-notification-stack/)
+[![Nuget](https://img.shields.io/nuget/v/gammarers.CDK.AWS.BudgetNotificationStack?style=flat-square)](https://www.nuget.org/packages/Gammarers.CDK.AWS.BudgetNotificationStack/) -->
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/gammarers/aws-budgets-notification-stack/release.yml?branch=main&label=release&style=flat-square)](https://github.com/gammarers/aws-budgets-notification-stack/actions/workflows/release.yml)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/gammarers/aws-budgets-notification-stack?sort=semver&style=flat-square)](https://github.com/gammarers/aws-budgets-notification-stack/releases)
 
-[![View on Construct Hub](https://constructs.dev/badge?package=@gammarers/aws-budgets-notification)](https://constructs.dev/packages/@gammarers/aws-budgets-notification)
+<!-- [![View on Construct Hub](https://constructs.dev/badge?package=@gammarers/aws-budgets-notification-stack)](https://constructs.dev/packages/@gammarers/aws-budgets-notification-stack) -->
 
-A construct library for creating AWS Budgets Notification to Slack with the AWS CDK.
+<!-- A construct library for creating AWS Budgets Notification to Slack with the AWS CDK. -->
 
 ## Resources
 
 This construct creating resource list.
 
-- SNS Topic
-- ChatBot SlackChannelConfiguration
+- SNS Topic(noop)
 - Budgets (linked account count or self)
 
-## Install
+<!-- ## Install
 
 ### TypeScript
 
 ```shell
-npm install @gammarers/aws-budgets-notification
+npm install @gammarers/aws-budgets-notification-stack
 # or
-yarn add @gammarers/aws-budgets-notification
+yarn add @gammarers/aws-budgets-notification-stack
 ```
 
 ### Python
 
 ```shell
-pip install gammarers.aws-budgets-notification
+pip install gammarers.aws-budgets-notification-stack
 ```
 
 ### C# / .NET
 
 ```shell
-dotnet add package Gammarers.CDK.AWS.BudgetNotification
+dotnet add package Gammarers.CDK.AWS.BudgetNotificationStack
 ```
 
 ## Example
 
 ```typescript
-import { BudgetsNotification } from '@gammarers/aws-budgets-notification';
+import { BudgetsNotificationStack } from '@gammarers/aws-budgets-notification-stack';
 
-new BudgetsNotification(stack, 'BudgetsNotification', {
-  slackWorkspaceId: 'T0XXXX111', // already AWS account linked your Slack.
-  slackChannelId: 'XXXXXXXX', // already created your slack channel.
-  budgetLimitAmount: 50,
-  // optional linked account list
-  linkedAccounts: [
-    '111111111111',
-    '222222222222',
-  ],
+new BudgetsNotificationStack(app, 'BudgetsNotificationStack', {
+  amount: 50,
 });
 
-```
+``` -->
 
-![example notification](./docs/slack-notification-image.png)
+<!-- ![example notification](./docs/slack-notification-image.png) -->
 
 
 ## License
