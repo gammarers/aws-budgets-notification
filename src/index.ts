@@ -116,7 +116,7 @@ export class BudgetsNotificationStack extends Stack {
     const success = new sfn.Succeed(this, 'Success');
 
     const machine = new sfn.StateMachine(this, 'BudgetAlertNotificationStateMachine', {
-      definition: pass.next(success),
+      definitionBody: sfn.DefinitionBody.fromChainable(pass.next(success)),
     });
 
     new events.Rule(this, 'BudgetThresholdExceededRule', {
