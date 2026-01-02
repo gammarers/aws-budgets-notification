@@ -1,0 +1,242 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BudgetsNotification Testing BudgetsNotification Normal Testing Should match snapshot: budgets-normal 1`] = `
+{
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "Budget": {
+      "Properties": {
+        "Budget": {
+          "BudgetLimit": {
+            "Amount": 50,
+            "Unit": "USD",
+          },
+          "BudgetName": "Monthly usage",
+          "BudgetType": "COST",
+          "TimeUnit": "MONTHLY",
+        },
+        "NotificationsWithSubscribers": [
+          {
+            "Notification": {
+              "ComparisonOperator": "GREATER_THAN",
+              "NotificationType": "ACTUAL",
+              "Threshold": 60,
+              "ThresholdType": "PERCENTAGE",
+            },
+            "Subscribers": [
+              {
+                "Address": {
+                  "Ref": "BudgetsSinkTopic8E6851BE",
+                },
+                "SubscriptionType": "SNS",
+              },
+            ],
+          },
+          {
+            "Notification": {
+              "ComparisonOperator": "GREATER_THAN",
+              "NotificationType": "ACTUAL",
+              "Threshold": 80,
+              "ThresholdType": "PERCENTAGE",
+            },
+            "Subscribers": [
+              {
+                "Address": {
+                  "Ref": "BudgetsSinkTopic8E6851BE",
+                },
+                "SubscriptionType": "SNS",
+              },
+            ],
+          },
+          {
+            "Notification": {
+              "ComparisonOperator": "GREATER_THAN",
+              "NotificationType": "ACTUAL",
+              "Threshold": 100,
+              "ThresholdType": "PERCENTAGE",
+            },
+            "Subscribers": [
+              {
+                "Address": {
+                  "Ref": "BudgetsSinkTopic8E6851BE",
+                },
+                "SubscriptionType": "SNS",
+              },
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::Budgets::Budget",
+    },
+    "BudgetAlertNotificationStateMachine535AC909": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "BudgetAlertNotificationStateMachineRole340E6FDF",
+      ],
+      "Properties": {
+        "DefinitionString": "{"StartAt":"Pass","States":{"Pass":{"Type":"Pass","Next":"Success"},"Success":{"Type":"Succeed"}}}",
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "BudgetAlertNotificationStateMachineRole340E6FDF",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::StepFunctions::StateMachine",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "BudgetAlertNotificationStateMachineEventsRoleDefaultPolicy8058018A": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "states:StartExecution",
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "BudgetAlertNotificationStateMachine535AC909",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "BudgetAlertNotificationStateMachineEventsRoleDefaultPolicy8058018A",
+        "Roles": [
+          {
+            "Ref": "BudgetAlertNotificationStateMachineEventsRoleF2B2EF4C",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "BudgetAlertNotificationStateMachineEventsRoleF2B2EF4C": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "events.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "BudgetAlertNotificationStateMachineRole340E6FDF": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "states.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "BudgetThresholdExceededRuleF06665E8": {
+      "Properties": {
+        "Description": "Trigger Step Functions when AWS Budgets threshold is exceeded",
+        "EventPattern": {
+          "detail-type": [
+            "Budget Threshold Exceeded",
+          ],
+          "source": [
+            "aws.budgets",
+          ],
+        },
+        "State": "ENABLED",
+        "Targets": [
+          {
+            "Arn": {
+              "Ref": "BudgetAlertNotificationStateMachine535AC909",
+            },
+            "Id": "Target0",
+            "InputPath": "$",
+            "RoleArn": {
+              "Fn::GetAtt": [
+                "BudgetAlertNotificationStateMachineEventsRoleF2B2EF4C",
+                "Arn",
+              ],
+            },
+          },
+        ],
+      },
+      "Type": "AWS::Events::Rule",
+    },
+    "BudgetsSinkTopic8E6851BE": {
+      "Properties": {
+        "DisplayName": "Budgets notification sink (no subscriptions)",
+      },
+      "Type": "AWS::SNS::Topic",
+    },
+    "BudgetsSinkTopicPolicy1A6AFDF4": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sns:Publish",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "budgets.amazonaws.com",
+              },
+              "Resource": {
+                "Ref": "BudgetsSinkTopic8E6851BE",
+              },
+              "Sid": "0",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Topics": [
+          {
+            "Ref": "BudgetsSinkTopic8E6851BE",
+          },
+        ],
+      },
+      "Type": "AWS::SNS::TopicPolicy",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
